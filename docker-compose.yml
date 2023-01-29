@@ -1,0 +1,23 @@
+version: "3"
+services:
+  monacute-task:
+    build: .
+    tty: true
+    restart: always
+    depends_on:
+      - electrum-mona
+  electrum-mona:
+    image: palon7/electrum-mona-daemon
+    restart: always
+    volumes:
+      - ./data/electrum:/data
+    environment:
+      ELECTRUM_USER: electrum
+      ELECTRUM_PASSWORD: password
+      TESTNET: "true"
+  db:
+    image: postgres:13.4
+    restart: always
+    environment:
+      POSTGRES_USER: monacute
+      POSTGRES_PASSWORD: postgres

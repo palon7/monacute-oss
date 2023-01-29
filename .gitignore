@@ -1,0 +1,18 @@
+node_modules
+# Keep environment variables out of version control
+.env
+.production
+.staging
+docker-compose.production.yml
+*.swp
+*.log
+data
+dist
+docs
+coverage
+tools/out
+key.json
+!apps/monacute-task/data
+/index.html
+
+__pycache__

@@ -1,0 +1,13 @@
+**/node_modules
+**/*.log
+**/dist
+**/data
+**/.next
+
+**/docs
+**/coverage
+
+README.md
+CHANGELOG.md
+docker-compose.yml
+Dockerfile

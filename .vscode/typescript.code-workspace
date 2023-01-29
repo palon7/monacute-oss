@@ -1,0 +1,22 @@
+{
+  "folders": [
+    {
+      "path": "..",
+      "name": "root"
+    },
+    {
+      "path": "../apps/monacute-task"
+    },
+    {
+      "path": "../packages/monaparty"
+    }
+  ],
+  "settings": {
+    "jest.disabledWorkspaceFolders": ["root", "monacute-repo"],
+    "testing.autoRun.mode": "rerun",
+    "jest.autoRun": {
+      "watch": false,
+      "onSave": "test-file"
+    }
+  }
+}

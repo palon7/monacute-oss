@@ -1,0 +1,12 @@
+# compiled output
+node_modules
+
+# next
+.next
+
+# Logs
+logs
+*.log
+
+# OS
+.DS_Store

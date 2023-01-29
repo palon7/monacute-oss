@@ -1,0 +1,2 @@
+#!/bin/sh
+docker-compose exec electrum-mona electrum-mona load_wallet

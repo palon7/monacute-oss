@@ -1,0 +1,3 @@
+#!/bin/sh
+#docker-compose exec monacute-task /bin/bash -c "cd /app; yarn run tsc"
+docker-compose exec monacute-task /bin/bash -c "cd /apps; npx lerna run build"

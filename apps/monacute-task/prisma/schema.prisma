@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Address {
+  id            Int     @id @default(autoincrement())
+  address       String  @unique @db.VarChar(64)
+  addressIndex  Int
+  isChange      Boolean
+  auctions      Auction[]
+  transactions  ProcessedTransaction[]
+}
+
+model Auction {
+  id          Int      @id @default(autoincrement())
+  purchased   Boolean? @default(false)
+  startPrice  BigInt
+  endPrice    BigInt
+  bidPrice    BigInt?
+  startTime   DateTime @db.Timestamp(6)
+  endTime     DateTime @db.Timestamp(6)
+  address     Address  @relation(fields: [addressId], references: [id])
+  addressId   Int
+  asset       MpAsset  @relation(fields: [assetId], references: [id])
+  assetId     String   @db.VarChar(128)
+  isOfficial  Boolean? @default(false)
+}
+
+model MpAsset {
+  id          String   @id @db.VarChar(128) // Asset name
+  assetOwner  String   @db.VarChar(64)
+  auctions    Auction[]
+  monacute    Monacute?
+  createdAt   DateTime @default(now())
+}
+
+model Config {
+  id    String @id @db.VarChar(64)
+  value Int
+}
+
+model ProcessedTransaction {
+  id        String   @id
+  status    TransactionStatus
+  assetId   String?   @db.VarChar(128)
+  address     Address  @relation(fields: [addressId], references: [id])
+  addressId   Int
+  senderAddress String?  @db.VarChar(64)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt @default(now())
+}
+
+enum TransactionStatus {
+  UNPROCESSED
+  SENT_ASSET
+  REFUND_COIN
+  TOO_SMALL
+  ERROR
+}
+
+model Monacute {
+  id              Int      @id @default(autoincrement())
+  asset           MpAsset? @relation(fields: [assetId], references: [id])
+  assetId         String?  @db.VarChar(128)
+  published       Boolean  @default(false)
+  number          Int      @unique
+  name            String?  @db.VarChar(128)
+  cardCid         String?  @db.VarChar(128)
+  imageCid        String?  @db.VarChar(128)
+  dnaUrl          String?  @db.VarChar(255)
+  cardDescription String?  @db.VarChar(255)
+  parents         Monacute[]  @relation("parentChild", references: [id])
+  childs          Monacute[]  @relation("parentChild", references: [id])
+  auctionCount    Int     @default(0)
+  generation      Int
+  seed            Bytes
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt @default(now())
+}
+
+enum MonacuteStatus {
+  CREATED
+  METADATA_GENERATED
+  IMAGE_GENERATED
+  PUBLISHED
+}
+
+model MonacuteName {
+  id          Int      @id @default(autoincrement())
+  name        String   @db.VarChar(128) @unique
+  used        Boolean  @default(false)
+}
