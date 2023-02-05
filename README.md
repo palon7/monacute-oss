@@ -32,3 +32,8 @@ Files in `apps/` are licensed under [AGPLv3](/apps/monacute-task/LICENSE.md).
 `python/gpu-gen/asset/rounded-mplus-1c-light.ttf` are licensed under [SIL Open Font License 1.1](https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL_web) ([Copyright 2021 The M+ FONTS Project Authors](https://github.com/coz-m/MPLUS_FONTS))
 
 Other files are licensed under [MIT License](/python/gpu-gen/LICENSE.md).
+
+# Donation
+**Monacoin:** MSEFCyitaSrTKgp4gdGPhMxxY5ZmBx9wbg\
+**Ethereum:** 0x911c3bd983AB24Fdf5db97560904803a4e1EAc6f\
+**Bitcoin:** 16yKdR2zHe7vVJBBzEJdZDH3Gj7LpSib1S
